@@ -4,6 +4,8 @@ springBoot = "3.5.3"
 ktlint = "13.1.0"
 springCloud = "2025.0.0"
 gson = "2.11.0"
+bucket4j = "8.14.0" 
+kotlinLogging = "7.0.3" 
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
@@ -24,3 +26,5 @@ spring-cloud-starter-netflix-eureka-client = { module = "org.springframework.clo
 spring-cloud-config-server = { module = "org.springframework.cloud:spring-cloud-config-server" }
 spring-cloud-starter-config = { module = "org.springframework.cloud:spring-cloud-starter-config" }
 google-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }  # Kotlin Logging
+bucket4j-core = { module = "com.bucket4j:bucket4j_jdk17-core", version.ref = "bucket4j" }  # Bucket4j

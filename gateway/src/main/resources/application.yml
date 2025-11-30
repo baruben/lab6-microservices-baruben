@@ -1,0 +1,28 @@
+spring:
+  application:
+    # Service name for Eureka registration and Config Server lookup.
+    # This service will be registered as "GATEWAY-SERVICE" in Eureka.
+    name: gateway-service
+  cloud:
+    config:
+      # Direct URL to Config Server.
+      uri: http://localhost:8762
+  config:
+    # Fetches configuration from Config Server.
+    # WITHOUT "optional:" prefix = FAIL-FAST behavior (service fails if Config Server unreachable)
+    # WITH "optional:" prefix = service starts anyway using local config
+    # Note: spring.cloud.config.fail-fast is IGNORED when using spring.config.import
+    import: "configserver:"
+
+# Notice there's no explicit Eureka client configuration here!
+# Spring Cloud automatically configures Eureka client when:
+# 1. spring-cloud-starter-netflix-eureka-client is on the classpath
+# 2. Eureka is available at the default location (http://localhost:8761/eureka/)
+# The web service will automatically register with Eureka and discover other services.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Exposes Actuator endpoints for health checks and metrics.
+        include: "*" # Enable all endpoints by default

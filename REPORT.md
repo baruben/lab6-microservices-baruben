@@ -377,9 +377,37 @@ So the web-service keeps trying to call the old instance **until its cache refre
 
 ## 7. API Gateway (Bonus 1)
 
+In a microservices architecture, the **API Gateway** acts as a single entry point for all client requests. Instead of clients calling each microservice directly, they interact with the gateway, which routes the requests to the appropriate backend service.
+
+For this assignment, **Spring Cloud Gateway** was used as the edge service. Key features implemented include:
+
+1. **Routing:** Incoming requests are forwarded to the respective microservices (e.g., `accounts-service`, `web-service`) based on path patterns or service names.
+2. **Rate Limiting:** Configured limits on request frequency to prevent abuse and ensure fair usage.
+3. **Logging:** Both request and response information are logged to monitor traffic and diagnose issues.
+4. **Centralized Configuration:** All routing and filtering rules are defined in the *config-server* and fetched by the *gateway* at startup, reducing duplication across services.
+
+Results:
+- Simplifies client interaction by providing a single endpoint.
+- Protects services from direct exposure and potential overload.
+- Demonstrates knowledge of **edge service patterns** in a microservices ecosystem.
+
 ---
 
 ## 8. Security with OAuth2/JWT (Bonus 2)
+
+Security in microservices requires both **authentication** (verifying identity) and **authorization** (controlling access). OAuth2 combined with JWT tokens provides a robust mechanism for securing client-to-service communication.
+
+For this assignment, **Google OAuth2** was used as the **Authorization Server**, to issue and sign JWTs. Key features implemented include:
+
+1. **Spring Security + OAuth2 Resource Server:** The *gateway* application validates JWT tokens to ensure only authorized requests are processed.
+2. **JWT Tokens:** Tokens issued by Google OAuth2 contain user claims and scopes for access control.
+3. **Token Propagation:** When the *gateway* calls a microservice, the JWT token is forwarded to maintain authenticated identity.
+
+Results:
+- Secures all endpoints, preventing unauthorized access.
+- Supports scalable, decentralized authentication in a distributed system.
+- Demonstrates understanding of **security patterns in microservices**, including token-based authentication and authorization.
+- Integrates cleanly with the API Gateway to enforce security policies at the edge.
 
 ---
 
